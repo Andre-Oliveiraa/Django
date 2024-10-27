@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'global/css/output.css' %}">
+    <title>Cadastro</title>
+</head>
+
+<body class="h-screen w-screen bg-slate-600 flex flex-col justify-center items-center gap-3">
+    <div class="flex flex-row gap-3 items-center justify-between">
+        <h1 class="text-zinc-200">Tela de Cadastro</h1>
+        <a href="{% url 'login:main' %}">
+            <button
+                class="p-2 bg-zinc-300 rounded hover:bg-zinc-700 hover:text-slate-100 transition-all">Voltar</button>
+        </a>
+    </div>
+    <form method="post" action="{% url 'login:cadastrar' %}" class="flex flex-col gap-3">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required class="p-2 rounded">
+        <input type="email" name="email" placeholder="Email" required class="p-2 rounded">
+        <input type="password" name="password" placeholder="Senha" required class="p-2 rounded">
+
+        <select name="filial" required class="p-2 rounded">
+            <option value="" selected>Escolha uma filial</option>
+            {% for filial in filiais %}
+            <option value="{{ filial.id }}">{{ filial.nome }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="text" name="estado" placeholder="Estado" required class="p-2 rounded">
+        <input type="text" name="cidade" placeholder="Cidade" required class="p-2 rounded">
+
+        <button type="submit"
+            class="p-2 bg-zinc-300 rounded hover:bg-zinc-700 hover:text-slate-100 transition-all">Cadastrar
+        </button>
+    </form>
+</body>
+
+</html>

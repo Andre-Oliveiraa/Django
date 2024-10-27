@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "serve": "python3 manage.py runserver",
+    "tailwind": "tailwindcss -i ./templates/static/global/css/input.css -o ./templates/static/global/css/output.css --watch",
+    "dev": "concurrently \"npm run serve\" \"npm run tailwind\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "tailwindcss": "^3.4.14"
+  }
+}
