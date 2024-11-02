@@ -1,38 +1,91 @@
 from django.shortcuts import render, redirect
-from .forms import Forms
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import AuthenticationForm
 from sistema.models import *
 
-# Create your views here.
-def cadastrar_user(request):
-    filiais = Filial.objects.all()  # Para exibir as opções de filial no template
+paises = {
+    'BR': 'Brasil',
+    'US': 'Estados Unidos',
+    'FR': 'França',
+}
 
+estados = {
+    'BR': {
+        'SP': 'São Paulo',
+        'RJ': 'Rio de Janeiro',
+        'MG': 'Minas Gerais',
+    },
+    'US': {
+        'CA': 'Califórnia',
+        'TX': 'Texas',
+        'NY': 'Nova Iorque',
+    },
+    'FR': {
+        'IDF': 'Île-de-France',
+        'PAC': 'Provence-Alpes-Côte d\'Azur',
+    },
+}
+
+cidades = {
+    'SP': ['São Paulo', 'Campinas', 'Santos'],
+    'RJ': ['Rio de Janeiro', 'Niterói', 'Cabo Frio'],
+    'MG': ['Belo Horizonte', 'Uberlândia', 'Juiz de Fora'],
+    'CA': ['Los Angeles', 'San Francisco', 'San Diego'],
+    'TX': ['Houston', 'Dallas', 'Austin'],
+    'NY': ['Nova Iorque', 'Buffalo', 'Rochester'],
+    'IDF': ['Paris', 'Versalhes', 'Nanterre'],
+    'PAC': ['Nice', 'Marseille', 'Toulon'],
+}
+
+def cadastrar_user(request):
     if request.method == 'POST':
         username = request.POST.get('username')
+        last_name = request.POST.get('last_name')
         email = request.POST.get('email')
-        password = request.POST.get('password')
-        filial_id = request.POST.get('filial') 
+        cpf = request.POST.get('cpf')
+        data_nascimento = request.POST.get('data_nascimento')
+        genero = request.POST.get('genero')
+        cargo = request.POST.get('cargo')
+        telefone = request.POST.get('telefone')
+        pais = request.POST.get('pais')
         estado = request.POST.get('estado')
         cidade = request.POST.get('cidade')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_senha')
+        imagem = request.FILES.get('imagem') 
 
-        if username and email and password and filial_id and estado and cidade:
-            filial = Filial.objects.get(id=filial_id)
+        # Validação das senhas
+        if password != confirm_password:
+            error = "Senhas diferentes"
+            return render(request, 'login/create.html', {'error': error, 'paises': paises, 'estados': estados})
+
+        # Verificação dos campos obrigatórios
+        if all([username, email, password, estado, cidade]):
             user = Gerente(
                 username=username,
+                first_name=username,
+                last_name=last_name,
                 email=email,
-                filial=filial,
+                cpf=cpf,
+                data_nascimento=data_nascimento,
+                genero=genero,
+                cargo=cargo,
+                telefone=telefone,
+                pais=pais,
                 estado=estado,
-                cidade=cidade
+                cidade=cidade,
+                imagem=imagem
             )
-            user.set_password(password) 
-            user.save() 
-            login(request, user)
+            user.set_password(password)
+            user.save()
+            backend = 'django.contrib.auth.backends.ModelBackend'
+            login(request, user, backend=backend)
             return redirect('tela:home')
         else:
-            print("Campos obrigatórios estão faltando.")
+            error = "Campos obrigatórios estão faltando."
+            return render(request, 'login/create.html', {'error': error, 'paises': paises, 'estados': estados})
 
-    return render(request, 'login/create.html', {'filiais': filiais})
+    return render(request, 'login/create.html', {'paises': paises, 'estados': estados})
     
 def login_user(request):
     if request.method == 'POST':
@@ -42,8 +95,9 @@ def login_user(request):
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
             if user is not None:
-                login(request, user)    
+                backend = 'django.contrib.auth.backends.ModelBackend'
+                login(request, user, backend=backend)
                 return redirect('tela:home')
     else:
         form = AuthenticationForm()
-    return render(request, 'login/login.html', {'form': form, 'action': 'login'})
+    return render(request, 'login/index.html', {'form': form, 'action': 'login'})

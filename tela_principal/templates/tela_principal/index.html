@@ -6,17 +6,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'global/css/output.css' %}">
     <title>Tela Principal</title>
 </head>
 
-<body class="h-screen w-screen bg-slate-600 flex flex-col justify-center items-center gap-3">
-    <h1 class="text-zinc-200">Tela do Home Page</h1>
-    <form action="{% url 'login:sair' %}" method="post" style="display: inline;">
-        {% csrf_token %}
-        <button type="submit"
-            class="p-2 bg-zinc-300 rounded hover:bg-zinc-700 hover:text-slate-100 transition-all">Sair</button>
-    </form>
+<body>
+    <h1>Tela do Home Page</h1>
+    <aside>
+        <ul>
+            <li>
+                <a href="{% url 'perfil:home' %}">
+                    <button>Perfil</button>
+                </a>
+            </li>
+            <li>
+                <form action="{% url 'login:sair' %}" method="POST" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit">Sair</button>
+                </form>
+            </li>
+        </ul>
+        <ul>
+
+        </ul>
+    </aside>
 </body>
 
 </html>

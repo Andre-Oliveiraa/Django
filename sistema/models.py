@@ -1,12 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 # Create your models here.
+class Categoria(models.Model):
+    nome = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.nome
+    
 class Produto(models.Model):
     nome = models.CharField(max_length=200)
     descricao = models.TextField(blank=True, null=True)
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     quantidade = models.IntegerField()
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='produtos')
 
     def __str__(self):
         return self.nome
@@ -31,8 +40,15 @@ class Filial(models.Model):
 
 class Gerente(AbstractUser):
     filial = models.OneToOneField(Filial, on_delete=models.CASCADE, null=True, blank=True)
-    estado = models.CharField(max_length=20)
-    cidade = models.CharField(max_length=50)
+    cpf = models.CharField(max_length=14, default='000.000.000-00')
+    data_nascimento = models.DateField(default='2000-01-01')
+    genero = models.CharField(max_length=20, default='Sem genero')
+    pais = models.CharField(max_length=50, default='Brasil')
+    estado = models.CharField(max_length=20, default=None)
+    cidade = models.CharField(max_length=50, default=None)
+    cargo = models.CharField(max_length=20, default='Sem cargo')
+    telefone = models.CharField(max_length=20, default='(00) 0000-0000')
+    imagem = models.ImageField(upload_to='images/', null=True, blank=True) 
 
     def __str__(self):
         return self.username

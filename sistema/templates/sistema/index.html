@@ -6,14 +6,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'global/css/output.css' %}">
     <title>Home Page</title>
 </head>
 
-<body class="h-screen w-screen bg-slate-600 flex flex-col justify-center items-center gap-3">
-    <h1 class="text-zinc-200">Welcome - Essa é a tela principal</h1>
+<body>
+    <h1>Welcome - Essa é a tela principal</h1>
     <a href="{% url 'login:main' %}">
-        <button class="p-2 bg-zinc-300 rounded hover:bg-zinc-700 hover:text-slate-100 transition-all">login</button>
+        <button>login</button>
     </a>
 </body>
 

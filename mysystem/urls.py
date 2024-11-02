@@ -16,10 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('sistema.urls', 'sistema'), namespace='sistema')),
     path('login/', include(('login.urls', 'login'), namespace='login')),
-    path('tela/', include(('tela_principal.urls', 'tela_principal'), namespace='tela'))
+    path('tela/', include(('tela_principal.urls', 'tela_principal'), namespace='tela')),
+    path('perfil/', include(('perfil.urls', 'perfil'), namespace='perfil')),
 ]
+
+if settings.DEBUG: urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
