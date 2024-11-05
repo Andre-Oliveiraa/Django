@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'sistema',
     'login',
     'tela_principal',
-    'perfil'
+    'perfil',
+    'estoque',
+    'produtos',
 ]
 
 MIDDLEWARE = [

@@ -6,14 +6,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'sistema/css/index.css' %}">
     <title>Home Page</title>
 </head>
 
 <body>
-    <h1>Welcome - Essa é a tela principal</h1>
-    <a href="{% url 'login:main' %}">
-        <button>login</button>
-    </a>
+    <header class="menu">
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'sistema:main' %}">
+                        Home
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav-list">
+                <li>
+                    <a href="{% url 'login:main' %}">
+                        Entra
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'login:cadastrar' %}">
+                        Cadastra-se
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="principal">
+            <section class="hero">
+                <nav class="hero-conteudo">
+                    <h1>Organizaçao Rapida</h1>
+                    <hr />
+                    <h2 class="hero-subtitulo">Organize sua empresa de maneira rapida e facil com o Index Control</h2>
+                </nav>
+                <div class="hero-imagens">
+                    <figure><img src="{% static 'global/image/Roupa 1.jpg' %}" /></figure>
+                    <figure><img src="{% static 'global/image/Roupa 2.jpg' %}" /></figure>
+                    <figure><img src="{% static 'global/image/Roupa 3.jpg' %}" /></figure>
+                    <figure><img src="{% static 'global/image/Roupa 4.jpg' %}" /></figure>
+                    <figure><img src="{% static 'global/image/Roupa 5.jpg' %}" /></figure>
+                    <figure><img src="{% static 'global/image/Roupa 6.jpg' %}" /></figure>
+                    <figure><img src="{% static 'global/image/Roupa 7.jpg' %}" /></figure>
+                    <figure><img src="{% static 'global/image/Roupa 8.jpg' %}" /></figure>
+                </div>
+            </section>
+            <br>
+            <br>
+            <br>
+            <br>
+            <section class="descriçao">
+                <div class="descriçao-problema">
+                    <h3><em>Qual é o propósito subjacente de nossa empresa?</em></h3>
+                    <p>Nossa empresa tem percebido uma crescente demanda entre outras empresas e suas filiais por
+                        soluções eficazes para a desorganização frequente de seus estoques, evidenciando a necessidade
+                        urgente de implementar métodos adequados de organização.</p>
+                    <br>
+                    <p>Pensando em resolver esses problemas de forma eficaz e com menos demanda de tempo, nossa empresa
+                        desenvolveu a Index Control. Com esse sistema, sua empresa pode organizar seus estoques
+                        rapidamente em apenas alguns cliques, economizando o dobro do tempo em comparação com os métodos
+                        convencionais. Além disso, ao final de cada mês, você receberá um relatório completo do
+                        progresso feito e sugestões para melhorias.</p>
+                </div>
+            </section>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <section class="feedback">
+                <br>
+                <header class="feedback-cabecalho">
+                    <span class="destaque">Feedback</span>
+                    <h2 class="feedback-titulo">Confira os feedback</h2>
+                    <p class="feedback-subtitulo">Dê uma olhada nos comentarios sobre nós</p>
+                </header>
+                <div class="feedback-card-container">
+                    <div class="feedback-card">
+                        <header class="feedback-card-cabecalho">
+                            <div class="feedback-card-cabecalho-detalhes">
+                            </div>
+                            <p class="avaliacao">Extraordinario - 5.0</p>
+                        </header>
+                        <p class="feedback-descricao">Um app muito facil de usar e que realmente ajuda muito na
+                            organizaçao de estoque da minha loja 🤩. O suporte é muito atencioso e responde super rapido
+                        </p>
+                        <div class="feedback-autor">
+                            <img src="{% static 'global/image/Edward Lima.jpg' %}" />
+                            <span class="feedback-autor-nome">Edward Lima</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="feedback-card-container2">
+                    <div class="feedback-card2">
+                        <header class="feedback-card-cabecalho2">
+                            <div class="feedback-card-cabecalho-detalhes2">
+                            </div>
+                            <p class="avaliacao2">Maravilhoso - 5.0</p>
+                        </header>
+                        <p class="feedback-descricao2">Pensa em um site exelente que é o index control. Eu tinha muita
+                            dificuldade para administrar o estoque da minha empresa mas com esse site ficou tudo muito
+                            mais facil 😍</p>
+                        <div class="feedback-autor2">
+                            <img src="{% static 'global/image/Bruna Lombardi.webp' %}" />
+                            <span class="feedback-autor-nome2">Bruna Lombardi</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="feedback-card-container3">
+                    <div class="feedback-card3">
+                        <header class="feedback-card-cabecalho3">
+                            <div class="feedback-card-cabecalho-detalhes3">
+                            </div>
+                            <p class="avaliacao3">Impressionante - 5.0</p>
+                        </header>
+                        <p class="feedback-descricao3">Muito bom mesmo, nao sei como nao conheci esse site antes, tudo
+                            ficou muito mais automatico e facil de resolver agora. O suporte foi super atencioso desde o
+                            inicio dando a devida atençao para o cliente. Super recomendo. 👍</p>
+                        <div class="feedback-autor3">
+                            <img src="{% static 'global/image/Lucas Caetano.jpg' %}" />
+                            <span class="feedback-autor-nome3">Lucas Caetano</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feedback-card-container4">
+                    <div class="feedback-card4">
+                        <header class="feedback-card-cabecalho4">
+                            <div class="feedback-card-cabecalho-detalhes4">
+                            </div>
+                            <p class="avaliacao4">Incrivel - 5.0</p>
+                        </header>
+                        <p class="feedback-descricao4">Recentemente abri uma nova filial da minha loja de roupa e estava
+                            com muita dificuldade para poder administrar tudo, mas esse site simplismente mudou a minha
+                            vida pois agora ficou tudo muito mais facil, rapido e automatico. ❤️</p>
+                        <div class="feedback-autor4">
+                            <img src="{% static 'global/image/Laura Santos.jpg' %}" />
+                            <span class="feedback-autor-nome4">Laura Santos</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer style="text-align: center;">
+                <p class="footer-copy">©Copyright
+                    <FJKLN /> 2024
+                </p>
+                <p class="footer-abrev">&lt;FJKLN /&gt;</p>
+                <P class="footer-autor">Duvidas, entre em contato
+                    <br>redeesuporteFJKLN@gmail.com
+                </P>
+            </footer>
+    </main>
+
 </body>
 
 </html>

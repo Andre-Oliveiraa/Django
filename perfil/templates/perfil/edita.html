@@ -1,0 +1,142 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'perfil/css/edita.css' %}">
+    <title>Perfil</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <aside>
+            <ul>
+                <div>
+                    <li>
+                        <a href="{% url 'perfil:editar' user.id %}">
+                            <img src="{{ user.imagem.url }}" alt="Imagem do Usuário" />
+                            <p>Perfil</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'estoque:home' %}">
+                            Estoque
+                        </a>
+                    </li>
+                </div>
+                <li>
+                    <form action="{% url 'login:sair' %}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Sair</button>
+                    </form>
+                </li>
+            </ul>
+        </aside>
+        <main>
+            <div class="image">
+                <img src="{{ user.imagem.url }}" alt="Imagem do Usuário" class="image_main" />
+            </div>
+            <form action="{% url 'perfil:editar' user.id %}" method="post">
+                {% csrf_token %}
+                {% for mensagem in messages %}
+                <p>{{ mensagem }}</p>
+                {% endfor %}
+                <table>
+                    <tr>
+                        <td>
+                            <input type="text" value="{{ user.username }}" name="username" required>
+                        </td>
+                        <td>
+                            <input type="text" value="{{ user.last_name }}" name="last_name" required>
+                        </td>
+                        <td>
+                            <input type="email" value="{{ user.email }}" name="email">
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td>
+                            <input type="text" name="cpf" id="cpf" value="{{ user.cpf }}" required maxlength="14">
+                        </td>
+                        <td>
+                            <input type="date" name="data_nascimento" value="{{ user.data_nascimento|date:'Y-m-d' }}"
+                                required>
+                        </td>
+                        <td>
+                            {% if user.genero == 'Masculino' %}
+                            <select name="genero">
+                                <option value="{{ user.genero }}" selected>{{ user.genero }}</option>
+                                <option value="Feminino">Feminino</option>
+                                <option value="Outro">Outro</option>
+                                <option value="Prefiro não dizer">Prefiro não dizer</option>
+                            </select>
+                            {% elif user.genero == 'Feminino' %}
+                            <select name="genero">
+                                <option value="{{ user.genero }}" selected>{{ user.genero }}</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Outro">Outro</option>
+                                <option value="Prefiro não dizer">Prefiro não dizer</option>
+                            </select>
+                            {% elif user.genero == 'Outro' %}
+                            <select name="genero">
+                                <option value="{{ user.genero }}" selected>{{ user.genero }}</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                                <option value="Prefiro não dizer">Prefiro não dizer</option>
+                            </select>
+                            {% elif user.genero == 'Prefiro não dizer' %}
+                            <select name="genero">
+                                <option value="{{ user.genero }}" selected>{{ user.genero }}</option>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Feminino">Feminino</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" value="{{ user.cargo }}" name="cargo">
+                        </td>
+                        <td>
+                            <input type="text" name="telefone" id="telefone" value="{{ user.telefone }}" required
+                                maxlength="15">
+                        </td>
+                        <td>
+                            <input type="text" name="pais" value="{{ user.pais }}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" name="estado" id="estado" value="{{ user.estado }}" required">
+                        </td>
+                        <td>
+                            <input type="text" name="cidade" value="{{ user.cidade }}" required>
+                        </td>
+                        <td>
+                            <button type="submit" class="salve">Salvar</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+    </div>
+    </main>
+    <footer style="text-align: center;">
+        <p class="footer-copy">©Copyright
+            <FJKLN /> 2024
+        </p>
+        <p class="footer-abrev">&lt;FJKLN /&gt;</p>
+        <p class="footer-autor">Duvidas, entre em contato
+            <br>redeesuporteFJKLN@gmail.com
+        </p>
+    </footer>
+</body>
+
+</html>

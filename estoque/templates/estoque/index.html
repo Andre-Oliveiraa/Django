@@ -1,0 +1,93 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'estoque/css/index.css' %}">
+    <title>Estoque Page</title>
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <ul>
+                <div>
+                    <li>
+                        <a href="{% url 'perfil:editar' user.id %}">
+                            <img src="{{ user.imagem.url }}" alt="Imagem do Usuário" />
+                            <p>Perfil</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'estoque:home' %}">
+                            Estoque
+                        </a>
+                    </li>
+                </div>
+                <li>
+                    <form action="{% url 'login:sair' %}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Sair</button>
+                    </form>
+                </li>
+            </ul>
+        </aside>
+        <div class="content">
+            <ul>
+                <li>
+                    <a href="{% url 'produtos:home' %}" class="add">
+                        Adicionar Produto
+                    </a>
+                </li>
+            </ul>
+            {% for mensagem in messages %}
+            <p>{{ mensagem }}</p>
+            {% endfor %}
+            {% for categoria in categorias %}
+            <div>
+                <h2>{{ categoria.nome }}</h2>
+                {% if categoria.nome == 'Sem categoria' %}
+                {% else %}
+                <a href="{% url 'produtos:deleta_categoria' categoria.pk %}" class="del">Deletar Categoria</a>
+                {% endif %}
+            </div>
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>Descricão</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                </tr>
+                {% for produto in categoria.produtos.all %}
+                <tr>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.descricao }}</td>
+                    <td>{{ produto.preco }}</td>
+                    <td>{{ produto.quantidade }}</td>
+                    <td><a href="{% url 'produtos:editar' pk=produto.pk %}">Editar</a></td>
+                    <td><a href="{% url 'produtos:deleta' pk=produto.pk %}">Deletar</a></td>
+                </tr>
+                {% empty %}
+                <li>Sem produtos nesta categoria.</li>
+                {% endfor %}
+            </table>
+            {% empty %}
+            <p>Não há categorias disponíveis.</p>
+            {% endfor %}
+        </div>
+    </div>
+    <footer style="text-align: center;">
+        <p class="footer-copy">©Copyright
+            <FJKLN /> 2024
+        </p>
+        <p class="footer-abrev">&lt;FJKLN /&gt;</p>
+        <p class="footer-autor">Duvidas, entre em contato
+            <br>redeesuporteFJKLN@gmail.com
+        </p>
+    </footer>
+</body>
+
+</html>

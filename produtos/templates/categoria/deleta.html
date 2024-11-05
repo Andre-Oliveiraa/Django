@@ -1,0 +1,61 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'produtos/css/deleta.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <ul>
+                <div>
+                    <li>
+                        <a href="{% url 'perfil:editar' user.id %}">
+                            <img src="{{ user.imagem.url }}" alt="Imagem do Usuário" />
+                            <p>Perfil</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'estoque:home' %}">
+                            Estoque
+                        </a>
+                    </li>
+                </div>
+                <li>
+                    <form action="{% url 'login:sair' %}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Sair</button>
+                    </form>
+                </li>
+            </ul>
+        </aside>
+
+        <main>
+            <h2>Deletar Categoria</h2>
+            <p>Você tem certeza de que deseja deletar a categoria "{{ categoria.nome }}"?</p>
+
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit">Deletar</button>
+                <a href="{% url 'estoque:home' %}">Cancelar</a>
+            </form>
+        </main>
+    </div>
+    <footer style="text-align: center;">
+        <p class="footer-copy">©Copyright
+            <FJKLN /> 2024
+        </p>
+        <p class="footer-abrev">&lt;FJKLN /&gt;</p>
+        <p class="footer-autor">Duvidas, entre em contato
+            <br>redeesuporteFJKLN@gmail.com
+        </p>
+    </footer>
+</body>
+
+</html>

@@ -6,18 +6,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'login/css/index.css' %}">
     <title>Tela de Login</title>
 </head>
 
 <body>
-    <h1>Tela de Login</h1>
-    <form action="{% url 'login:main' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="username" placeholder="Email ou Nome" required>
-        <input type="password" name="password" placeholder="Senha" required>
-        <button type="submit">Entrar</button>
-    </form>
-    <p>Não tem uma conta? <a href="{% url 'login:cadastrar' %}">Cadastre-se aqui</a></p>
+    <header class="menu">
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'sistema:main' %}">
+                        Home
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav-list">
+                <!--<li>
+                    <a href="{% url 'login:main' %}">
+                        Entra
+                    </a>
+                </li>-->
+                <li>
+                    <a href="{% url 'login:main' %}">
+                        Entra
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'login:cadastrar' %}">
+                        Cadastra-se
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="login-container">
+        <form action="{% url 'login:main' %}" method="post" class="login-form">
+            {% csrf_token %}
+            <h1>Tela de Login</h1>
+            <input type="text" name="username" placeholder="Email ou Nome" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+            <p class="signup-link">Não tem uma conta? <a href="{% url 'login:cadastrar' %}">Cadastre-se aqui</a></p>
+        </form>
+    </main>
+
+    <footer>
+        <p class="footer-copy">©Copyright
+            <FJKLN /> 2024
+        </p>
+        <p class="footer-abrev">&lt;FJKLN /&gt;</p>
+        <P class="footer-autor">Duvidas, entre em contato
+            <br>redeesuporteFJKLN@gmail.com
+        </P>
+    </footer>
 </body>
 
 </html>

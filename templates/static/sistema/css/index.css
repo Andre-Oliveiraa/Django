@@ -1,0 +1,501 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #1F1517;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu {
+    background: #181012;
+}
+
+h3 {
+    font-weight: 300px;
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1rem;
+    font-weight: 200;
+}
+
+html {
+    font-family: inter, sans-serif;
+    font-weight: 500;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+    font-family: Inter;
+    transition: all 0.3s ease-in-out;
+    font-size: larger;
+}
+
+a:hover {
+    opacity: 0.7;
+    border-bottom: #fff 1px solid;
+}
+
+ul {
+    list-style: none;
+}
+
+nav {
+    max-width: 1120px;
+    margin: auto;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 50px 50px;
+}
+
+.descriçao {
+    max-width: 1120px;
+    height: 60 vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 6rem;
+    align-items: center;
+    padding: 0rem 2rem;
+    margin: auto;
+    overflow: clip;
+}
+
+.descriçao-problema {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 1rem;
+}
+
+.nav-list.active {
+    transform: translateX(0);
+}
+
+.menu.active .line2 {
+    opacity: 0;
+}
+
+.menu.active .line1 {
+    transform: rotate(-45deg) translate(-8px, 8px);
+}
+
+.menu.active .line3 {
+    transform: rotate(45deg) translate(-5px, -7px);
+}
+
+.principal {
+    margin: 1rem 0 0 0;
+}
+
+.hero {
+    max-width: 1120px;
+    height: 60vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 6rem;
+    align-items: center;
+    padding: 0rem 2rem;
+    margin: auto;
+    overflow: clip;
+}
+
+.hero-conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+h1 {
+    font-family: Montserrat;
+    font-size: 3.5rem;
+    font-weight: 800;
+}
+
+hr {
+    border-color: #A45A49;
+}
+
+.hero-subtitulo {
+    color: #c7bab3;
+    font-family: Inter;
+    font-size: 1.5rem;
+    font-weight: 400px;
+}
+
+.hero-imagens {
+    max-width: 45%;
+    column-count: 4;
+    column-gap: 1rem;
+    margin: -1rem;
+}
+
+.hero-imagens>figure>img {
+    width: 100%;
+    border-radius: 0.5rem;
+}
+
+footer {
+    margin: 2rem 0 0 0;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: #23181A;
+    text-align: center;
+    width: 100%;
+}
+
+.footer-copy {
+    color: #FFF2E7;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.footer-autor {
+    color: rgba(255, 242, 231, 0.50);
+    font-family: Inter;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    text-align: center;
+}
+
+.footer-abrev {
+    color: #FFF2E7;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.feedback {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    max-width: 1120px;
+    padding: 0px;
+    margin: auto;
+}
+
+.feedback-cabecalho {
+    display: flex;
+    flex-direction: column;
+    gap: o.5rem;
+
+}
+
+.destaque {
+    color: #A45A49;
+    font-family: Inter;
+}
+
+.feedback-titulo {
+    font-family: Montserrat;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FFF2E7;
+}
+
+.feedback-subtitulo {
+    color: #c7bab3;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 400px;
+}
+
+.feedback-card-container {
+    padding: 0rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    display: inline-block;
+}
+
+.feedback-card {
+    background: #241A1C;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-basis: 29rem;
+    margin-top: 2rem;
+}
+
+.feedback-card-cabecalho {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.feedback-card-cabecalho-detalhes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.avaliacao {
+    color: #756A67;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.feedback-descricao {
+    color: #c7bab3;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.feedback-autor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feedback-autor>img {
+    border-radius: 20rem;
+    width: 1.5rem;
+}
+
+.feedback-autor-nome {
+    color: #c7bab3;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.feedback-card-container2 {
+    padding: 0rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    display: inline-block;
+}
+
+.feedback-card2 {
+    background: #241A1C;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-basis: 29rem;
+    margin-top: 2rem;
+}
+
+.feedback-card-cabecalho2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.feedback-card-cabecalho-detalhes2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.avaliacao2 {
+    color: #756A67;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.feedback-descricao2 {
+    color: #c7bab3;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.feedback-autor2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feedback-autor2>img {
+    border-radius: 20rem;
+    width: 1.5rem;
+}
+
+.feedback-autor-nome2 {
+    color: #c7bab3;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.feedback-card-container3 {
+    padding: 0rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    display: inline-block;
+}
+
+.feedback-card3 {
+    background: #241A1C;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-basis: 29rem;
+    margin-top: 2rem;
+}
+
+.feedback-card-cabecalho3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.feedback-card-cabecalho-detalhes3 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.avaliacao3 {
+    color: #756A67;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.feedback-descricao3 {
+    color: #c7bab3;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.feedback-autor3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feedback-autor3>img {
+    border-radius: 20rem;
+    width: 1.5rem;
+}
+
+.feedback-autor-nome3 {
+    color: #c7bab3;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.feedback-card-container4 {
+    padding: 0rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+    display: inline-block;
+}
+
+.feedback-card4 {
+    background: #241A1C;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex-basis: 29rem;
+    margin-top: 2rem;
+}
+
+.feedback-card-cabecalho4 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.feedback-card-cabecalho-detalhes4 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.avaliacao4 {
+    color: #756A67;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.feedback-descricao4 {
+    color: #c7bab3;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.feedback-autor4 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.feedback-autor4>img {
+    border-radius: 20rem;
+    width: 1.5rem;
+}
+
+.feedback-autor-nome4 {
+    color: #c7bab3;
+    font-family: Inter;
+    font-size: 1rem;
+    font-weight: 600;
+}

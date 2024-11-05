@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'produtos/css/edita.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <ul>
+                <div>
+                    <li>
+                        <a href="{% url 'perfil:editar' user.id %}">
+                            <img src="{{ user.imagem.url }}" alt="Imagem do Usuário" />
+                            <p>Perfil</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'estoque:home' %}">
+                            Estoque
+                        </a>
+                    </li>
+                </div>
+                <li>
+                    <form action="{% url 'login:sair' %}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Sair</button>
+                    </form>
+                </li>
+            </ul>
+        </aside>
+        <div class="content">
+            <h1>Editar Produto: {{ produto.nome }}</h1>
+            <main class="login-container">
+                <form method="POST" class="login-form">
+                    {% csrf_token %}
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" value="{{ produto.nome }}">
+
+                    <label for="categoria">Categoria:</label>
+                    <select id="categoria" name="categoria">
+                        {% for categoria in categorias %}
+                        <option value="{{ categoria.id }}">
+                            {{ categoria.nome }}
+                        </option>
+                        {% endfor %}
+                    </select>
+
+                    <label for="preco">Preço:</label>
+                    <input type="text" id="preco" name="preco" value="{{ produto.preco }}">
+
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="text" id="quantidade" name="quantidade" value="{{ produto.quantidade }}">
+                    <button type="submit">Salvar</button>
+                    <a href="{% url 'estoque:home' %}">Voltar ao Estoque</a>
+                </form>
+            </main>
+        </div>
+    </div>
+    <footer style="text-align: center;">
+        <p class="footer-copy">©Copyright
+            <FJKLN /> 2024
+        </p>
+        <p class="footer-abrev">&lt;FJKLN /&gt;</p>
+        <p class="footer-autor">Duvidas, entre em contato
+            <br>redeesuporteFJKLN@gmail.com
+        </p>
+    </footer>
+</body>
+
+</html>

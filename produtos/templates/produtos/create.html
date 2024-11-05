@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'produtos/css/create.css' %}">
+    <title>Produtos</title>
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <ul>
+                <div>
+                    <li>
+                        <a href="{% url 'perfil:editar' user.id %}">
+                            <img src="{{ user.imagem.url }}" alt="Imagem do Usuário" />
+                            <p>Perfil</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'estoque:home' %}">
+                            Estoque
+                        </a>
+                    </li>
+                </div>
+                <li>
+                    <form action="{% url 'login:sair' %}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit">Sair</button>
+                    </form>
+                </li>
+            </ul>
+        </aside>
+        <div class="content">
+            <main class="login-container">
+                <form action="{% url 'produtos:home' %}" method="post" class="login-form">
+                    {% csrf_token %}
+                    <h1>Pagina de Produtos</h1>
+                    <label for="nome">
+                        Produto
+                        <input type="text" placeholder="Nome do Produto" name="nome" required>
+                    </label>
+                    <label for="descricao">
+                        Descricão
+                        <input type="text" placeholder="Descricão" name="descricao" required>
+                    </label>
+                    <label for="preco">
+                        Preço
+                        <input type="text" id="preco" inputmode="decimal" placeholder="Preço" name="preco" required>
+                    </label>
+                    <label for="quantidade">
+                        Quantidade
+                        <input type="number" placeholder="Preço" name="quantidade" required>
+                    </label>
+                    <label for="categoria">
+                        Categoria
+                        <select name="categoria" id="" required>
+                            <option value="" selected>Escolha uma categoria</option>
+                            {% for categoria in categorias %}
+                            <option value="{{categoria.id}}">{{categoria.nome}}</option>
+                            {% empty %}
+                            <option value="">Nenhuma categoria encontrada</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                    <button type="submit" class="btn">Cadastrar</button>
+                </form>
+            </main>
+            <main class="login-container">
+                <form action="{% url 'produtos:categoria' %}" method="post" class="login-form">
+                    <h1>Deseja adicionar uma categoria?</h1>
+                    {% csrf_token %}
+                    <label for="nome">
+                        Nome da Categoria
+                        <input type="text" name="nome">
+                    </label>
+                    <button type="submit" class="btn">Salvar</button>
+                </form>
+            </main>
+        </div>
+    </div>
+    <footer style="text-align: center;">
+        <p class="footer-copy">©Copyright
+            <FJKLN /> 2024
+        </p>
+        <p class="footer-abrev">&lt;FJKLN /&gt;</p>
+        <p class="footer-autor">Duvidas, entre em contato
+            <br>redeesuporteFJKLN@gmail.com
+        </p>
+    </footer>
+</body>
+
+</html>

@@ -1,6 +1,3 @@
-// dynamicFields.js
-
-// Função para atualizar os estados com base no país selecionado
 function updateStates() {
     var countrySelect = document.getElementById('pais');
     var stateSelect = document.getElementById('estado');
@@ -36,6 +33,34 @@ function updateStates() {
     }
 }
 
+function updateCities() {
+    var stateSelect = document.getElementById('estado');
+    var citiesSelect = document.getElementById('cidade');
+    var selectedState = stateSelect.value;
+
+    // Limpa as cidades
+    citiesSelect.innerHTML = '<option value="">Escolha uma cidade</option>';
+
+    // Atualiza as cidades
+    var cities = {
+        'SP': ['São Paulo', 'Campinas', 'Santos'],
+        'RJ': ['Rio de Janeiro', 'Niterói', 'Cabo Frio'],
+        'MG': ['Belo Horizonte', 'Uberlândia', 'Juiz de Fora'],
+        'CA': ['Los Angeles', 'San Francisco', 'San Diego'],
+        'TX': ['Houston', 'Dallas', 'Austin'],
+        'NY': ['Nova Iorque', 'Buffalo', 'Rochester'],
+        'IDF': ['Paris', 'Versalhes', 'Nanterre'],
+        'PAC': ['Nice', 'Marseille', 'Toulon'],
+    };
+
+    if (cities[selectedState]) {
+        for (var i = 0; i < cities[selectedState].length; i++) {
+            citiesSelect.innerHTML += `<option value="${cities[selectedState][i]}">${cities[selectedState][i]}</option>`;
+        }
+    }
+}
+
+
 // Função para atualizar as cidades com base no estado selecionado
 function updateCities() {
     var stateSelect = document.getElementById('estado');
@@ -63,6 +88,7 @@ function updateCities() {
         }
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", function () {
     const cpfInput = document.getElementById("cpf");

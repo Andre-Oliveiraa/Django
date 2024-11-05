@@ -25,6 +25,8 @@ urlpatterns = [
     path('login/', include(('login.urls', 'login'), namespace='login')),
     path('tela/', include(('tela_principal.urls', 'tela_principal'), namespace='tela')),
     path('perfil/', include(('perfil.urls', 'perfil'), namespace='perfil')),
+    path('estoque/', include(('estoque.urls', 'estoque'), namespace='estoque')),
+    path('produtos/', include(('produtos.urls', 'produtos'), namespace='produtos')),
 ]
 
 if settings.DEBUG: urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

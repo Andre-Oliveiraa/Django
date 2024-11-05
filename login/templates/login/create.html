@@ -7,107 +7,140 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="{% static 'global/js/main.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'login/css/create.css' %}">
     <title>Cadastro</title>
 </head>
 
 <body>
-    <div>
-        <h1>Tela de Cadastro</h1>
-        <p>Ja tem conta ? <a href="{% url 'login:main' %}">entra</a></p>
+    <header class="menu">
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'sistema:main' %}">
+                        Home
+                    </a>
+                </li>
+            </ul>
+            <ul class="nav-list">
 
-    </div>
-    <form method="post" action="{% url 'login:cadastrar' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        <span>{{ error }}</span>
-        <div>
-            <label for="username">
-                Nome
-                <input type="text" name="username" placeholder="Nome" required>
-            </label>
-            <label for="last_name">
-                Sobrenome
-                <input type="text" name="last_name" placeholder="Sobrenome" required>
-            </label>
-        </div>
-        <div>
-            <label for="email">
-                Email
-                <input type="email" name="email" placeholder="Email" required>
-            </label>
-            <label for="cpf">
-                CPF
-                <input type="text" name="cpf" id="cpf" placeholder="CPF" required maxlength="14">
-            </label>
-        </div>
-        <div>
-            <label for="data_nascimento">
-                Data de Nascimento
-                <input type="date" name="data_nascimento" placeholder="Data de Nascimento" required>
-            </label>
-            <label for="genero">
-                Gênero
-                <select name="genero">
-                    <option value="" selected>Escolha um gênero</option>
-                    <option value="Masculino">Masculino</option>
-                    <option value="Feminino">Feminino</option>
-                    <option value="Outro">Outro</option>
-                    <option value="Prefiro não dizer">Prefiro não dizer</option>
-                </select>
-            </label>
-        </div>
-        <div>
-            <label for="cargo">
-                Cargo
-                <input type="text" name="cargo" placeholder="Cargo" required>
-            </label>
-            <label for="telefone">
-                Telefone
-                <input type="text" name="telefone" id="telefone" placeholder="Telefone" required maxlength="15">
-            </label>
-        </div>
-        <div>
-            <label for="pais">
-                País
-                <select name="pais" id="pais" onchange="updateStates()" required>
-                    <option value="">Escolha um país</option>
-                    {% for sigla, nome in paises.items %}
-                    <option value="{{ sigla }}">{{ nome }}</option>
-                    {% endfor %}
-                </select>
-            </label>
+                <li>
+                    <a href="{% url 'login:main' %}">
+                        Entra
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'login:cadastrar' %}">
+                        Cadastra-se
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="login-container">
+        <form method="post" action="{% url 'login:cadastrar' %}" enctype="multipart/form-data" class="login-form">
+            <h1>Tela de Cadastro</h1>
+            {% csrf_token %}
+            <span>{{ error }}</span>
+            <div>
+                <label for="username">
+                    Nome
+                    <input type="text" name="username" placeholder="Nome" required>
+                </label>
+                <label for="last_name">
+                    Sobrenome
+                    <input type="text" name="last_name" placeholder="Sobrenome" required>
+                </label>
+            </div>
+            <div>
+                <label for="email">
+                    Email
+                    <input type="email" name="email" placeholder="Email" required>
+                </label>
+                <label for="cpf">
+                    CPF
+                    <input type="text" name="cpf" id="cpf" placeholder="CPF" required maxlength="14">
+                </label>
+            </div>
+            <div>
+                <label for="data_nascimento">
+                    Data de Nascimento
+                    <input type="date" name="data_nascimento" placeholder="Data de Nascimento" required>
+                </label>
+                <label for="genero">
+                    Gênero
+                    <select name="genero">
+                        <option value="" selected>Escolha um gênero</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                        <option value="Outro">Outro</option>
+                        <option value="Prefiro não dizer">Prefiro não dizer</option>
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label for="cargo">
+                    Cargo
+                    <input type="text" name="cargo" placeholder="Cargo" required>
+                </label>
+                <label for="telefone">
+                    Telefone
+                    <input type="text" name="telefone" id="telefone" placeholder="Telefone" required maxlength="15">
+                </label>
+            </div>
+            <div>
+                <label for="pais">
+                    País
+                    <select name="pais" id="pais" onchange="updateStates()" required>
+                        <option value="">Escolha um país</option>
+                        {% for sigla, nome in paises.items %}
+                        <option value="{{ sigla }}">{{ nome }}</option>
+                        {% endfor %}
+                    </select>
+                </label>
 
-            <label for="estado">
-                Estado
-                <select name="estado" id="estado" onchange="updateCities()" required>
-                    <option value="">Escolha um estado</option>
-                </select>
-            </label>
+                <label for="estado">
+                    Estado
+                    <select name="estado" id="estado" onchange="updateCities()" required>
+                        <option value="">Escolha um estado</option>
+                    </select>
+                </label>
 
-            <label for="cidade">
-                Cidade
-                <select name="cidade" id="cidade" required>
-                    <option value="">Escolha uma cidade</option>
-                </select>
-            </label>
-        </div>
-        <div>
-            <label for="password">
-                Senha
-                <input type="password" name="password" placeholder="Senha" required>
-            </label>
-            <label for="confirm_senha">
-                Confirmar Senha
-                <input type="password" name="confirm_senha" placeholder="Confirmar Senha" required>
-            </label>
-        </div>
-        <div>
-            <label for="imagem">
-                Imagem
-                <input type="file" name="imagem" accept="image/*" required>
-            </label>
-        </div>
-        <button type="submit">Cadastrar</button>
-    </form>
+                <label for="cidade">
+                    Cidade
+                    <select name="cidade" id="cidade" required>
+                        <option value="">Escolha uma cidade</option>
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label for="password">
+                    Senha
+                    <input type="password" name="password" placeholder="Senha" required>
+                </label>
+                <label for="confirm_senha">
+                    Confirmar Senha
+                    <input type="password" name="confirm_senha" placeholder="Confirmar Senha" required>
+                </label>
+            </div>
+            <div>
+                <label for="imagem">
+                    Imagem
+                    <input type="file" name="imagem" accept="image/*" required>
+                </label>
+            </div>
+            <button type="submit">Cadastrar</button>
+            <p class="signup-link">Ja tem conta ? <a href="{% url 'login:main' %}">entra</a></p>
+        </form>
+    </main>
+    <footer style="text-align: center;">
+        <p class="footer-copy">©Copyright
+            <FJKLN /> 2024
+        </p>
+        <p class="footer-abrev">&lt;FJKLN /&gt;</p>
+        <p class="footer-autor">Duvidas, entre em contato
+            <br>redeesuporteFJKLN@gmail.com
+        </p>
+    </footer>
 </body>
 
 </html>
